@@ -1,2 +1,0 @@
-import {db} from './db';
-export async function rateLimit(key:string,limit=20,windowMs=60000){const now=Date.now();const since=new Date(now-windowMs);const row=await db.rateLimit.upsert({where:{key},create:{key,count:1,windowStart:new Date(now)},update:{count:{increment:1}}});if(row.windowStart<since){await db.rateLimit.update({where:{key},data:{count:1,windowStart:new Date(now)}});return true}return row.count<=limit}
