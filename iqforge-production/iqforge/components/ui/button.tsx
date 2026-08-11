@@ -1,0 +1,1 @@
+'use client';import * as React from 'react';export function Button({className='',...props}:React.ButtonHTMLAttributes<HTMLButtonElement>){return <button className={`focus-ring rounded-xl bg-white px-5 py-3 font-medium text-black disabled:opacity-40 ${className}`} {...props}/>}

@@ -1,0 +1,1 @@
+import {NextResponse} from 'next/server';import {clearSession,requireSameOrigin} from '@/lib/auth';export async function POST(){await requireSameOrigin();await clearSession();return NextResponse.json({ok:true})}

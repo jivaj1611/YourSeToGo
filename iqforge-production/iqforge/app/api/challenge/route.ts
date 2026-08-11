@@ -1,0 +1,2 @@
+
+import {NextResponse} from 'next/server';import {requireUser} from '@/lib/auth';import {db} from '@/lib/db';export async function GET(){await requireUser();const q=await db.question.findFirst({where:{active:true,category:'pattern'},orderBy:{createdAt:'desc'}});if(!q)return NextResponse.json({error:'No challenge available.'},{status:503});return NextResponse.json({question:{id:q.id,prompt:q.prompt,options:q.options,correctAnswer:q.correctAnswer,explanation:q.explanation}})}
